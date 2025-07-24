@@ -11,7 +11,7 @@ services:
       retries: 10
 
   graphql:
-    image: node:18.13.0
+    image: node:24.4.1
     command: yarn tsx watch --clear-screen=false --inspect=0.0.0.0:9229 src/server.ts
     working_dir: /home/node/app
     depends_on:

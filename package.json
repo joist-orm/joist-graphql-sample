@@ -24,12 +24,12 @@
     "@graphql-tools/graphql-file-loader": "^8.0.22",
     "@graphql-tools/load": "^8.1.2",
     "@graphql-tools/schema": "^10.0.25",
-    "fastify": "^4.25.2",
-    "fastify-plugin": "^4.5.1",
+    "fastify": "^5.4.0",
+    "fastify-plugin": "^5.0.1",
     "graphql": "16.11.0",
     "joist-migration-utils": "^1.259.0",
     "joist-orm": "^1.259.0",
-    "mercurius": "^13.3.3"
+    "mercurius": "^16.2.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.7",
