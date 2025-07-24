@@ -2,7 +2,10 @@ import { Author, newAuthor } from "src/entities";
 
 describe("Author", () => {
   it.withCtx("can be created", async ({ em }) => {
-    const a = new Author(em, { firstName: "a1" });
+    const a = newAuthor(em, {
+      firstName: "a1",
+      books: [{ title: "b1" }],
+    });
     await em.flush();
   });
 
