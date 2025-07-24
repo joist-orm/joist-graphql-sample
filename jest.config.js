@@ -3,9 +3,6 @@ module.exports = {
   globalSetup: "<rootDir>/src/setupTestEnv.ts",
   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
   testMatch: ["<rootDir>/src/**/*.test.{ts,tsx,js,jsx}"],
-  moduleNameMapper: {
-    "^src(.*)": "<rootDir>/src$1",
-  },
-  testRunner: "jest-jasmine2",
+  moduleNameMapper: { "^src(.*)": "<rootDir>/src$1" },
   maxWorkers: 1,
 };
