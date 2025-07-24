@@ -1,6 +1,6 @@
-import { authorResolvers } from "src/resolvers/objects/author/authorResolvers";
-import { bookResolvers } from "src/resolvers/objects/book/bookResolvers";
-import { bookReviewResolvers } from "src/resolvers/objects/bookReview/bookReviewResolvers";
+import { authorResolvers } from "src/resolvers/author/authorResolvers";
+import { bookResolvers } from "src/resolvers/book/bookResolvers";
+import { bookReviewResolvers } from "src/resolvers/bookReview/bookReviewResolvers";
 
 // This file is auto-generated
 

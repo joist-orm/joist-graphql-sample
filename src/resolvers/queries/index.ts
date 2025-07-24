@@ -1,7 +1,7 @@
 import { QueryResolvers } from "src/generated/graphql-types";
-import { author } from "src/resolvers/queries/author/authorResolver";
-import { books } from "src/resolvers/queries/book/booksResolver";
-import { testQuery } from "src/resolvers/queries/testQueryResolver";
+import { author } from "src/resolvers/author/authorQuery";
+import { books } from "src/resolvers/book/booksQuery";
+import { testQuery } from "src/resolvers/queries/testQueryQuery";
 
 // This file is auto-generated
 

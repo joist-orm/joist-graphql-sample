@@ -1,8 +1,8 @@
 import { MutationResolvers } from "src/generated/graphql-types";
-import { deleteAuthor } from "src/resolvers/mutations/author/deleteAuthorResolver";
-import { saveAuthor } from "src/resolvers/mutations/author/saveAuthorResolver";
-import { saveBook } from "src/resolvers/mutations/book/saveBookResolver";
-import { saveBookReview } from "src/resolvers/mutations/bookReview/saveBookReviewResolver";
+import { deleteAuthor } from "src/resolvers/author/deleteAuthorMutation";
+import { saveAuthor } from "src/resolvers/author/saveAuthorMutation";
+import { saveBook } from "src/resolvers/book/saveBookMutation";
+import { saveBookReview } from "src/resolvers/bookReview/saveBookReviewMutation";
 
 // This file is auto-generated
 
