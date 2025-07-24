@@ -21,18 +21,18 @@
     "printWidth": 120
   },
   "dependencies": {
-    "@graphql-tools/graphql-file-loader": "^8.0.0",
-    "@graphql-tools/load": "^8.0.1",
-    "@graphql-tools/schema": "^10.0.2",
+    "@graphql-tools/graphql-file-loader": "^8.0.22",
+    "@graphql-tools/load": "^8.1.2",
+    "@graphql-tools/schema": "^10.0.25",
     "fastify": "^4.25.2",
     "fastify-plugin": "^4.5.1",
-    "graphql": "16.8.1",
+    "graphql": "16.11.0",
     "joist-migration-utils": "^1.259.0",
     "joist-orm": "^1.259.0",
     "mercurius": "^13.3.3"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/cli": "^5.0.7",
     "@homebound/graphql-typescript-possible-types": "^2.18.0",
     "@homebound/graphql-typescript-resolver-scaffolding": "^2.43.0",
     "@homebound/graphql-typescript-simple-resolvers": "^1.53.0",
