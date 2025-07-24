@@ -45,7 +45,7 @@
     "joist-graphql-resolver-utils": "^1.259.0",
     "joist-test-utils": "^1.259.0",
     "node-pg-migrate": "^6.2.2",
-    "prettier": "^3.1.1",
+    "prettier": "^3.6.2",
     "ts-jest": "^29.4.0",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3"

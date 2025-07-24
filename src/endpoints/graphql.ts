@@ -22,13 +22,13 @@ export const GraphqlPlugin = fp<{ context: AppContext }>(async (app, { context }
 });
 
 async function createExecutableSchema(): Promise<GraphQLSchema> {
-    return addResolversToSchema({
-      schema: await loadGqlSchema(),
-      resolvers: { ...(resolvers as any) },
-      resolverValidationOptions: {
-        requireResolversToMatchSchema: "ignore",
-        requireResolversForAllFields: "error",
-        requireResolversForResolveType: "error",
-      },
-    });
+  return addResolversToSchema({
+    schema: await loadGqlSchema(),
+    resolvers: { ...(resolvers as any) },
+    resolverValidationOptions: {
+      requireResolversToMatchSchema: "ignore",
+      requireResolversForAllFields: "error",
+      requireResolversForResolveType: "error",
+    },
+  });
 }
