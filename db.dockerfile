@@ -1,35 +1,48 @@
-FROM postgres:14.0
-ARG APP_DBNAME=sample_app
-ARG APP_USERNAME=sample_user
-ARG APP_PASSWORD=local
-
+FROM postgres:16.0
+ENV APP_DBNAME=sample_app
+ENV APP_USERNAME=sample_user
+ENV APP_PASSWORD=local
 ENV POSTGRES_PASSWORD=admin
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_DB=postgres
 
 # Create the init.sh file. This file is only ran once; if you need to re-run it, use `docker-compose rm db`.
-RUN echo "#!/bin/bash" > /init.sh && \
-  echo "set -e" >> /init.sh && \
-  echo "psql -v ON_ERROR_STOP=1 --username "\$POSTGRES_USER" --dbname "\$POSTGRES_DB" <<-EOSQL" >> /init.sh && \
-  echo "  CREATE USER \"${APP_USERNAME}\" PASSWORD '${APP_PASSWORD}';" >> /init.sh && \
-  echo "  CREATE DATABASE \"${APP_DBNAME}\";" >> /init.sh && \
-  echo "  GRANT ALL PRIVILEGES ON DATABASE \"${APP_DBNAME}\" TO \"${APP_USERNAME}\";" >> /init.sh && \
-  echo "EOSQL" >> /init.sh && \
-  chmod u+x /init.sh && \
-  mv /init.sh /docker-entrypoint-initdb.d/
+RUN <<-EOF
+cat > /init.sh <<'SCRIPT'
+#!/bin/bash
+set -e
+psql -v ON_ERROR_STOP=1 --username "${POSTGRES_USER}" --dbname "${POSTGRES_DB}" <<-EOSQL
+  ALTER SYSTEM SET log_connections = 'on';
+  ALTER SYSTEM SET log_disconnections = 'on';
+  ALTER SYSTEM SET log_statement = 'all';
+  CREATE USER "${APP_USERNAME}" PASSWORD '${APP_PASSWORD}';
+  CREATE DATABASE "${APP_DBNAME}" OWNER "${APP_USERNAME}";
+EOSQL
+SCRIPT
+EOF
+RUN chmod u+x /init.sh && mv /init.sh /docker-entrypoint-initdb.d/
 
 # Create the reset.sh file
-RUN echo "#!/bin/bash" > /reset.sh && \
-  echo "set -e" >> /reset.sh && \
-  echo "psql -v ON_ERROR_STOP=1 --username postgres --dbname postgres <<-EOSQL" >> /reset.sh && \
-  echo "  DROP DATABASE \"${APP_DBNAME}\";" >> /reset.sh && \
-  echo "  CREATE DATABASE \"${APP_DBNAME}\";" >> /reset.sh && \
-  echo "  GRANT ALL PRIVILEGES ON DATABASE \"${APP_DBNAME}\" TO \"${APP_USERNAME}\";" >> /reset.sh && \
-  echo "EOSQL" >> /reset.sh && \
-  chmod u+x /reset.sh
+RUN <<-EOF
+cat > /reset.sh <<'SCRIPT'
+#!/bin/bash
+set -e
+psql -v ON_ERROR_STOP=1 --username "${POSTGRES_USER}" --dbname "${POSTGRES_DB}" <<-EOSQL
+  DROP DATABASE "${APP_DBNAME}";
+  CREATE DATABASE "${APP_DBNAME}" OWNER "${APP_USERNAME}";
+EOSQL
+SCRIPT
+EOF
+RUN chmod u+x /reset.sh
 
 # Create the console.sh file
-RUN echo "#!/bin/bash" > /console.sh && \
-  echo "set -e" >> /console.sh && \
-  echo "psql -v ON_ERROR_STOP=1 --username \"${APP_USERNAME}\" --dbname \"${APP_DBNAME}\"" >> /console.sh && \
-  chmod u+x /console.sh
+RUN <<-EOF
+cat > /console.sh <<'SCRIPT'
+#!/bin/bash
+set -e
+psql -v ON_ERROR_STOP=1 --username "${APP_USERNAME}" --dbname "${APP_DBNAME}"
+SCRIPT
+EOF
+RUN chmod u+x /console.sh
 
 CMD ["postgres", "-c", "fsync=off"]

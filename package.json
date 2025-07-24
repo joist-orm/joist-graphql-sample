@@ -4,7 +4,7 @@
     "test": "jest",
     "pg-migrate": "env-cmd tsx ./node_modules/joist-migration-utils",
     "pg-new-migration": "node-pg-migrate create --template-file-name=migrations/.template.ts",
-    "joist-codegen": "env-cmd tsx ./node_modules/joist-codegen",
+    "joist-codegen": "env-cmd joist-codegen",
     "graphql-codegen": "graphql-codegen --config graphql-codegen.js",
     "codegen": "yarn joist-codegen && yarn graphql-codegen",
     "format": "prettier --write 'src/**/*.{ts,js,tsx,jsx}'",
