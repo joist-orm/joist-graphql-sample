@@ -1,6 +1,6 @@
 import { Context } from "src/context";
 import { SaveBookInput } from "src/generated/graphql-types";
-import { saveBook } from "src/resolvers/mutations/book/saveBookResolver";
+import { saveBook } from "src/resolvers/book/saveBookMutation";
 import { makeRunInputMutation, run } from "src/resolvers/testUtils";
 import { Book, newAuthor } from "src/entities";
 

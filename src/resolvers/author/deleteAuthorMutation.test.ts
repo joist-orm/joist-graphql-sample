@@ -1,5 +1,5 @@
 import { Context } from "src/context";
-import { deleteAuthor } from "src/resolvers/mutations/author/deleteAuthorResolver";
+import { deleteAuthor } from "src/resolvers/author/deleteAuthorMutation";
 import { run } from "src/resolvers/testUtils";
 import { newAuthor } from "src/entities";
 

@@ -1,5 +1,5 @@
 import { Context } from "src/context";
-import { books } from "src/resolvers/queries/book/booksResolver";
+import { books } from "src/resolvers/book/booksQuery";
 import { run } from "src/resolvers/testUtils";
 import { newBook } from "src/entities";
 
