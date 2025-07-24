@@ -1,5 +1,5 @@
 import { newBook } from "src/entities";
-import { bookResolvers } from "src/resolvers/objects/book/bookResolvers";
+import { bookResolvers } from "src/resolvers/book/bookResolvers";
 import { makeRunObjectField, makeRunObjectFields } from "src/resolvers/testUtils";
 
 describe("bookResolvers", () => {

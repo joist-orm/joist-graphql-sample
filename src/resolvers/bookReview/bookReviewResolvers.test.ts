@@ -1,5 +1,5 @@
 import { newBookReview } from "src/entities";
-import { bookReviewResolvers } from "src/resolvers/objects/bookReview/bookReviewResolvers";
+import { bookReviewResolvers } from "src/resolvers/bookReview/bookReviewResolvers";
 import { makeRunObjectField, makeRunObjectFields } from "src/resolvers/testUtils";
 
 describe("bookReviewResolvers", () => {

@@ -1,5 +1,5 @@
 import { newAuthor } from "src/entities";
-import { authorResolvers } from "src/resolvers/objects/author/authorResolvers";
+import { authorResolvers } from "src/resolvers/author/authorResolvers";
 import { makeRunObjectFields, makeRunObjectField } from "src/resolvers/testUtils";
 
 describe("authorResolvers", () => {
