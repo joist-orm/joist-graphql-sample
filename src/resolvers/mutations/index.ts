@@ -1,4 +1,4 @@
-import { MutationResolvers } from "src/generated/graphql-types";
+import type { MutationResolvers } from "src/generated/graphql-types";
 import { deleteAuthor } from "src/resolvers/author/deleteAuthorMutation";
 import { saveAuthor } from "src/resolvers/author/saveAuthorMutation";
 import { saveBook } from "src/resolvers/book/saveBookMutation";
