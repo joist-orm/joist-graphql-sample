@@ -1,5 +1,5 @@
-import { GraphQLResolveInfo, GraphQLScalarType } from "graphql";
-import { Context } from "src/context";
+import { type GraphQLResolveInfo, GraphQLScalarType } from "graphql";
+import type { Context } from "src/context";
 import { Author, Book, BookReview } from "src/entities";
 
 export interface Resolvers {
