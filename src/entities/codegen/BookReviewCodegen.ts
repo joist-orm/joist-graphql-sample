@@ -35,10 +35,10 @@ import {
   type ValueGraphQLFilter,
 } from "joist-orm";
 import {
-  Book,
+  type Book,
   type BookId,
   type BookOrder,
-  BookReview,
+  type BookReview,
   bookReviewMeta,
   type Entity,
   EntityManager,

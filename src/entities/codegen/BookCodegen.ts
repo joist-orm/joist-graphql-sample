@@ -1,7 +1,6 @@
 import {
   BaseEntity,
   type Changes,
-  cleanStringValue,
   type Collection,
   ConfigApi,
   type DeepPartialOrNull,
@@ -38,12 +37,12 @@ import {
   type ValueGraphQLFilter,
 } from "joist-orm";
 import {
-  Author,
+  type Author,
   type AuthorId,
   type AuthorOrder,
-  Book,
+  type Book,
   bookMeta,
-  BookReview,
+  type BookReview,
   type BookReviewId,
   type Entity,
   EntityManager,
@@ -154,7 +153,7 @@ export abstract class BookCodegen extends BaseEntity<EntityManager, string> impl
   }
 
   set title(title: string) {
-    setField(this, "title", cleanStringValue(title));
+    setField(this, "title", title);
   }
 
   get createdAt(): Date {
