@@ -1,5 +1,5 @@
 {
-  "name": "joist-ts-sample",
+  "name": "joist-graphql-sample",
   "scripts": {
     "test": "jest",
     "pg-migrate": "env-cmd tsx ./node_modules/joist-migration-utils",
@@ -16,10 +16,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stephenh/joist-ts-sample.git"
+    "url": "git+https://github.com/stephenh/joist-graphql-sample.git"
   },
   "license": "ISC",
-  "homepage": "https://github.com/stephenh/joist-ts-sample#readme",
+  "homepage": "https://github.com/stephenh/joist-graphql-sample#readme",
   "prettier": {
     "trailingComma": "all",
     "printWidth": 120
@@ -31,9 +31,10 @@
     "fastify": "^5.6.2",
     "fastify-plugin": "^5.1.0",
     "graphql": "16.12.0",
-    "joist-migration-utils": "^1.286.3",
-    "joist-orm": "^1.286.3",
-    "mercurius": "^16.6.0"
+    "joist-orm": "^2.0.3",
+    "knex": "^3.1.0",
+    "mercurius": "^16.6.0",
+    "pg": "^8.17.2"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^6.1.0",
@@ -42,12 +43,9 @@
     "@homebound/graphql-typescript-simple-resolvers": "^1.58.0",
     "@homebound/tsconfig": "^1.1.1",
     "@types/jest": "^30.0.0",
+    "@types/pg": "^8",
     "env-cmd": "^11.0.0",
     "jest": "^30.2.0",
-    "joist-codegen": "^1.286.3",
-    "joist-graphql-codegen": "^1.286.3",
-    "joist-graphql-resolver-utils": "^1.286.3",
-    "joist-test-utils": "^1.286.3",
     "node-pg-migrate": "^8.0.4",
     "prettier": "^3.7.4",
     "ts-jest": "^29.4.6",

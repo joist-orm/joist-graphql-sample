@@ -1,5 +1,6 @@
 import knex, { Knex } from "knex";
-import { Driver, PostgresDriver } from "joist-orm";
+import { Driver } from "joist-orm";
+import { PostgresDriver } from "joist-orm/pg";
 import { newPgConnectionConfig } from "joist-utils";
 import { FastifyRequest } from "fastify";
 import { EntityManager } from "src/entities";

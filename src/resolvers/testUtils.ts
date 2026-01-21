@@ -3,7 +3,7 @@ import {
   makeMakeRunObjectFields,
   makeMakeRunObjectField,
 } from "joist-graphql-resolver-utils/tests";
-import { run } from "joist-test-utils";
+import { run } from "joist-orm/tests";
 
 export { run };
 export const makeRunObjectFields = makeMakeRunObjectFields(run);
