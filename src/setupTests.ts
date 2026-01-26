@@ -1,5 +1,5 @@
 import { EntityManager } from "src/entities";
-import { toMatchEntity } from "joist-test-utils";
+import { toMatchEntity } from "joist-orm/tests";
 import { AppContext, newAppContext, Context } from "src/context";
 import "src/setupIt";
 
