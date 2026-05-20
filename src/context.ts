@@ -1,4 +1,4 @@
-import knex, { Knex } from "knex";
+import { Pool } from "pg";
 import { Driver } from "joist-orm";
 import { PostgresDriver } from "joist-orm/pg";
 import { newPgConnectionConfig } from "joist-utils";
@@ -7,7 +7,7 @@ import { EntityManager } from "src/entities";
 
 /** App-level dependencies like connection pools/etc. */
 export interface AppContext {
-  knex: Knex;
+  pool: Pool;
   driver: Driver;
   close(): Promise<void>;
 }
@@ -19,14 +19,14 @@ export interface Context extends AppContext {
 }
 
 export async function newAppContext(): Promise<AppContext> {
-  const knex = createKnex();
-  const driver = new PostgresDriver(knex);
+  const pool = new Pool(newPgConnectionConfig());
+  const driver = new PostgresDriver(pool, {
+    onQuery() {
+      // console.log(sql);
+    },
+  });
   async function close() {
-    await knex.destroy();
+    await pool.end();
   }
-  return { knex, driver, close };
-}
-
-function createKnex(): Knex {
-  return knex({ client: "pg", connection: newPgConnectionConfig(), debug: false });
+  return { pool, driver, close };
 }
