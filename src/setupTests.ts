@@ -11,9 +11,9 @@ export let queries: string[] = [];
 export async function getAppContext(): Promise<AppContext> {
   if (!appContext) {
     appContextPromise ??= newAppContext().then((ctx) => {
-      ctx.knex.on("query", (e: any) => {
-        queries.push(e.sql);
-      });
+      // ctx.knex.on("query", (e: any) => {
+      // queries.push(e.sql);
+      // });
       return ctx;
     });
     appContext = await appContextPromise;
@@ -22,8 +22,8 @@ export async function getAppContext(): Promise<AppContext> {
 }
 
 beforeEach(async () => {
-  const { knex } = await getAppContext();
-  await knex.select(knex.raw("flush_database()"));
+  const { pool } = await getAppContext();
+  await pool.query("select flush_database()");
 });
 
 afterAll(async () => {
@@ -52,7 +52,8 @@ export function resetQueries() {
 }
 
 export async function select(tableName: string): Promise<readonly any[]> {
-  return (await getAppContext()).knex.select("*").from(tableName).orderBy("id");
+  const result = (await getAppContext()).pool.query(`select * from ${tableName} from order by`);
+  return (await result).rows;
 }
 
 expect.extend({ toMatchEntity });

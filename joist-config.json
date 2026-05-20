@@ -1,6 +1,6 @@
 {
   "codegenPlugins": ["joist-orm/graphql-codegen"],
+  "codemodVersion": 2,
   "entities": { "Author": { "tag": "a" }, "Book": { "tag": "b" }, "BookReview": { "tag": "br" } },
-  "entitiesDirectory": "./src/entities",
-  "version": "2.0.3"
+  "entitiesDirectory": "./src/entities"
 }

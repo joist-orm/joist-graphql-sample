@@ -31,8 +31,7 @@
     "fastify": "^5.6.2",
     "fastify-plugin": "^5.1.0",
     "graphql": "16.12.0",
-    "joist-orm": "^2.0.3",
-    "knex": "^3.1.0",
+    "joist-orm": "^2.2.0",
     "mercurius": "^16.6.0",
     "pg": "^8.17.2"
   },
