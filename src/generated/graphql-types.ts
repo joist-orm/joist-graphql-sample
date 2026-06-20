@@ -27,7 +27,7 @@ export interface AuthorResolvers {
 export interface BookResolvers {
   author: Resolver<Book, {}, Author>;
   id: Resolver<Book, {}, string>;
-  reviews: Resolver<Book, {}, readonly BookReview[]>;
+  reviews: Resolver<Book, BookReviewsArgs, readonly BookReview[]>;
   title: Resolver<Book, {}, string>;
 }
 
@@ -79,6 +79,9 @@ export type SubscriptionResolver<R, A, T> = {
   subscribe: (root: R | undefined, args: A, ctx: Context, info: GraphQLResolveInfo) => AsyncIterator<T>;
 };
 
+export interface BookReviewsArgs {
+  first?: number | null | undefined;
+}
 export interface MutationDeleteAuthorArgs {
   id: string;
 }

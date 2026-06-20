@@ -10,7 +10,7 @@ type Book {
   id: ID!
   title: String!
   author: Author!
-  reviews: [BookReview!]!
+  reviews(first: Int): [BookReview!]!
 }
 
 input SaveBookInput {

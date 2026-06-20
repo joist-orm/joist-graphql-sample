@@ -19,7 +19,7 @@ declare module "fastify" {
 export async function createApp(context: AppContext): Promise<FastifyInstance> {
   const app = Fastify();
   void app.register(async (app) => {
-    app.decorateRequest("ctx", null);
+    app.decorateRequest("ctx", null as unknown as Context);
     app.addHook("preHandler", async (req) => {
       req.ctx = await createRequestContext(context, req);
     });

@@ -5,6 +5,10 @@ import { newPgConnectionConfig } from "joist-utils";
 import { FastifyRequest } from "fastify";
 import { EntityManager } from "src/entities";
 
+interface AppContextOpts {
+  onQuery?: (sql: string) => void;
+}
+
 /** App-level dependencies like connection pools/etc. */
 export interface AppContext {
   pool: Pool;
@@ -18,11 +22,12 @@ export interface Context extends AppContext {
   em: EntityManager;
 }
 
-export async function newAppContext(): Promise<AppContext> {
+/** Creates app-level dependencies like the connection pool and Joist driver. */
+export async function newAppContext(opts: AppContextOpts = {}): Promise<AppContext> {
   const pool = new Pool(newPgConnectionConfig());
   const driver = new PostgresDriver(pool, {
-    onQuery() {
-      // console.log(sql);
+    onQuery(sql) {
+      opts.onQuery?.(sql);
     },
   });
   async function close() {

@@ -1,12 +1,13 @@
 import { addResolversToSchema } from "@graphql-tools/schema";
+import { type IResolvers } from "@graphql-tools/utils";
 import fp from "fastify-plugin";
 import { GraphQLSchema } from "graphql";
 import Mercurius from "mercurius";
-import { AppContext } from "src/context";
+import { type Context } from "src/context";
 import { resolvers } from "src/resolvers";
 import { loadGqlSchema } from "src/schema";
 
-export const GraphqlPlugin = fp<{ context: AppContext }>(async (app, { context }) => {
+export const GraphqlPlugin = fp(async (app) => {
   const schema = await createExecutableSchema();
   void app.register(Mercurius, {
     schema,
@@ -24,7 +25,7 @@ export const GraphqlPlugin = fp<{ context: AppContext }>(async (app, { context }
 async function createExecutableSchema(): Promise<GraphQLSchema> {
   return addResolversToSchema({
     schema: await loadGqlSchema(),
-    resolvers: { ...(resolvers as any) },
+    resolvers: { ...(resolvers as unknown as IResolvers<unknown, Context, Record<string, unknown>, unknown>) },
     resolverValidationOptions: {
       requireResolversToMatchSchema: "ignore",
       requireResolversForAllFields: "error",

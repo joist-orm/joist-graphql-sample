@@ -10,12 +10,7 @@ export let queries: string[] = [];
 
 export async function getAppContext(): Promise<AppContext> {
   if (!appContext) {
-    appContextPromise ??= newAppContext().then((ctx) => {
-      // ctx.knex.on("query", (e: any) => {
-      // queries.push(e.sql);
-      // });
-      return ctx;
-    });
+    appContextPromise ??= newAppContext({ onQuery: recordQuery }).then((ctx) => ctx);
     appContext = await appContextPromise;
   }
   return appContext!;
@@ -49,6 +44,13 @@ export async function newEntityManager() {
 
 export function resetQueries() {
   queries = [];
+  numberOfQueries = 0;
+}
+
+/** Records a SQL query issued during tests. */
+export function recordQuery(sql: string) {
+  queries.push(sql);
+  numberOfQueries += 1;
 }
 
 export async function select(tableName: string): Promise<readonly any[]> {
