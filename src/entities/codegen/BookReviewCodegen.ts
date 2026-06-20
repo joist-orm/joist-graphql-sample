@@ -78,6 +78,7 @@ export interface BookReviewGraphQLFilter {
   createdAt?: ValueGraphQLFilter<Date>;
   updatedAt?: ValueGraphQLFilter<Date>;
   book?: EntityGraphQLFilter<Book, BookId, GraphQLFilterOf<Book>, never>;
+  bookId?: ValueGraphQLFilter<BookId>;
 }
 
 export interface BookReviewOrder {

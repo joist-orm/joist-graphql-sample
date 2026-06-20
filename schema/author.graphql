@@ -1,5 +1,12 @@
 extend type Query {
   author(id: ID!): Author!
+  authors(
+    filter: AuthorFilter
+    first: Int
+    after: String
+    last: Int
+    before: String
+  ): AuthorsConnection!
 }
 
 extend type Mutation {
@@ -22,4 +29,23 @@ input SaveAuthorInput {
 
 type SaveAuthorResult {
   author: Author!
+}
+
+type AuthorsConnection {
+  edges: [AuthorsEdge!]!
+  nodes: [Author!]!
+  pageInfo: PageInfo!
+}
+
+type AuthorsEdge {
+  node: Author!
+  cursor: String!
+}
+
+input AuthorFilter {
+  id: [ID!]
+  firstName: [String!]
+  lastName: [String!]
+  createdAt: [DateTime!]
+  updatedAt: [DateTime!]
 }

@@ -1,5 +1,6 @@
 extend type Query {
   books: [Book!]!
+  book(id: ID!): Book!
 }
 
 extend type Mutation {
@@ -21,4 +22,23 @@ input SaveBookInput {
 
 type SaveBookResult {
   book: Book!
+}
+
+type BooksConnection {
+  edges: [BooksEdge!]!
+  nodes: [Book!]!
+  pageInfo: PageInfo!
+}
+
+type BooksEdge {
+  node: Book!
+  cursor: String!
+}
+
+input BookFilter {
+  id: [ID!]
+  title: [String!]
+  createdAt: [DateTime!]
+  updatedAt: [DateTime!]
+  authorId: [ID!]
 }
