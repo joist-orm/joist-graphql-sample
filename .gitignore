@@ -4,6 +4,7 @@ node_modules/
 /dist/
 /coverage/
 /yarn-error.log
+.env
 
 .yarn/*
 !.yarn/patches
@@ -12,4 +13,3 @@ node_modules/
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
-
