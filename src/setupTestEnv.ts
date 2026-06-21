@@ -1,5 +1,12 @@
-import { GetEnvVars } from "env-cmd";
+import { execFileSync } from "node:child_process";
 
 export default async () => {
-  Object.entries(await GetEnvVars()).forEach(([key, value]) => (process.env[key] = value));
+  if (!process.env.DATABASE_URL) {
+    process.env.DATABASE_URL = getEnvValue("DATABASE_URL");
+  }
 };
+
+/** Returns an env value from the root ./env wrapper. */
+function getEnvValue(name: string): string {
+  return execFileSync("./env", ["sh", "-c", `echo $${name}`], { encoding: "utf8" }).trim();
+}

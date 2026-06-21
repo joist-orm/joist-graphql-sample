@@ -1,0 +1,17 @@
+#!/bin/sh
+set -eu
+
+if [ -z "${DATABASE_URL:-}" ]; then
+  docker compose up --wait db >/dev/null
+  published_port="$(docker compose port db 5432)"
+  port="${published_port##*:}"
+
+  if [ -z "${port}" ]; then
+    echo "Unable to determine Docker Compose db port from: ${published_port}" >&2
+    exit 1
+  fi
+
+  export DATABASE_URL="postgres://sample_user:local@localhost:${port}/sample_app"
+fi
+
+exec "$@"

@@ -2,16 +2,16 @@
   "name": "joist-graphql-sample",
   "scripts": {
     "test": "jest",
-    "pg-migrate": "env-cmd tsx ./node_modules/joist-migration-utils",
+    "pg-migrate": "./env tsx ./node_modules/joist-migration-utils",
     "pg-new-migration": "node-pg-migrate create --template-file-name=migrations/.template.ts",
-    "joist-codegen": "env-cmd joist-codegen",
+    "joist-codegen": "./env joist-codegen",
     "graphql-codegen": "graphql-codegen --config graphql-codegen.js",
     "codegen": "yarn joist-codegen && yarn graphql-codegen",
     "format": "prettier --write 'src/**/*.{ts,js,tsx,jsx}'",
     "build": "tsc",
     "start": "docker compose up graphql",
-    "db": "docker compose up --wait db-env && yarn pg-migrate && yarn joist-codegen",
-    "redb": "docker compose up --wait db-env && docker compose exec db ./reset.sh && yarn pg-migrate && yarn codegen",
+    "db": "./env sh -c 'docker compose up --wait db && yarn pg-migrate && yarn joist-codegen'",
+    "redb": "./env sh -c 'docker compose up --wait db && docker compose exec db ./reset.sh && yarn pg-migrate && yarn codegen'",
     "psql": "docker compose exec db psql --username sample_user --dbname sample_app"
   },
   "repository": {
@@ -43,7 +43,6 @@
     "@homebound/tsconfig": "^1.1.1",
     "@types/jest": "^30.0.0",
     "@types/pg": "^8.20.0",
-    "env-cmd": "^11.0.0",
     "jest": "^30.4.2",
     "node-pg-migrate": "^8.0.4",
     "prettier": "^3.8.3",
