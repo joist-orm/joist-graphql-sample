@@ -10,15 +10,37 @@ services:
       interval: 1s
       retries: 10
 
+  db-env:
+    build:
+      context: ./
+      dockerfile: db-env.dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    working_dir: /workspace
+    environment:
+      - TARGET_SERVICE=db
+      - TARGET_PORT=5432
+      - ENV_FILE=.env
+      - ENV_VAR_NAME=DATABASE_URL
+      - ENV_VAR_TEMPLATE=postgres://sample_user:local@{HOST}:{PORT}/sample_app
+      - HOST_NAME=localhost
+      - REFRESH_SECONDS=10
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./:/workspace
+    healthcheck:
+      test: ["CMD-SHELL", "test -f /tmp/db-env-ready"]
+      interval: 1s
+      retries: 20
+
   graphql:
     image: node:24.4.1
     command: yarn tsx watch --clear-screen=false --inspect=0.0.0.0:9229 src/server.ts
     working_dir: /home/node/app
     depends_on:
-      db:
+      db-env:
         condition: service_healthy
-    env_file:
-      - .env
     environment:
       - DATABASE_URL=postgres://sample_user:local@db:5432/sample_app
     volumes:
