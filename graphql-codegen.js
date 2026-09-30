@@ -10,6 +10,9 @@ module.exports = {
         contextType: "src/context#Context",
         noSchemaStitching: true,
         avoidOptionals: true,
+        scalars: {
+          DateTime: "Date",
+        },
         scaffolding: {
           ignoreObjectsPattern: "Detail$",
         },

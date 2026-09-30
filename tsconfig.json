@@ -7,10 +7,11 @@
     "moduleResolution": "Node16",
     "isolatedModules": true,
     "outDir": "dist",
-    "baseUrl": ".",
+    "rootDir": "src",
+    "types": ["node", "jest"],
     "paths": {
-      "src/*": ["src/*"],
-      "src": ["src"]
+      "src/*": ["./src/*"],
+      "src": ["./src"]
     }
   },
   "include": ["src"],

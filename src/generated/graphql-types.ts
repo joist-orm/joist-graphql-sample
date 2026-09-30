@@ -174,76 +174,76 @@ export interface QueryTestQueryArgs {
   error?: boolean | null | undefined;
 }
 export interface AuthorsConnection {
-  edges: AuthorsEdge[];
-  nodes: Author[];
-  pageInfo: CursorPageInfo;
+  edges: MaybePromise<AuthorsEdge[]>;
+  nodes: MaybePromise<Author[]>;
+  pageInfo: MaybePromise<CursorPageInfo>;
 }
 
 export interface AuthorsEdge {
-  cursor: string;
-  node: Author;
+  cursor: MaybePromise<string>;
+  node: MaybePromise<Author>;
 }
 
 export interface BookReviewsConnection {
-  edges: BookReviewsEdge[];
-  nodes: BookReview[];
-  pageInfo: CursorPageInfo;
+  edges: MaybePromise<BookReviewsEdge[]>;
+  nodes: MaybePromise<BookReview[]>;
+  pageInfo: MaybePromise<CursorPageInfo>;
 }
 
 export interface BookReviewsEdge {
-  cursor: string;
-  node: BookReview;
+  cursor: MaybePromise<string>;
+  node: MaybePromise<BookReview>;
 }
 
 export interface BooksConnection {
-  edges: BooksEdge[];
-  nodes: Book[];
-  pageInfo: CursorPageInfo;
+  edges: MaybePromise<BooksEdge[]>;
+  nodes: MaybePromise<Book[]>;
+  pageInfo: MaybePromise<CursorPageInfo>;
 }
 
 export interface BooksEdge {
-  cursor: string;
-  node: Book;
+  cursor: MaybePromise<string>;
+  node: MaybePromise<Book>;
 }
 
 export interface EmptyResult {
-  emptyResult: string | null | undefined;
+  emptyResult: MaybePromise<string | null | undefined>;
 }
 
 export interface SaveAuthorResult {
-  author: Author;
+  author: MaybePromise<Author>;
 }
 
 export interface SaveBookResult {
-  book: Book;
+  book: MaybePromise<Book>;
 }
 
 export interface SaveBookReviewResult {
-  bookReview: BookReview;
+  bookReview: MaybePromise<BookReview>;
 }
 
 export interface AuthorFilter {
-  createdAt?: DateTime[] | null | undefined;
+  createdAt?: Date[] | null | undefined;
   firstName?: string[] | null | undefined;
   id?: string[] | null | undefined;
   lastName?: string[] | null | undefined;
-  updatedAt?: DateTime[] | null | undefined;
+  updatedAt?: Date[] | null | undefined;
 }
 
 export interface BookFilter {
   authorId?: string[] | null | undefined;
-  createdAt?: DateTime[] | null | undefined;
+  createdAt?: Date[] | null | undefined;
   id?: string[] | null | undefined;
   title?: string[] | null | undefined;
-  updatedAt?: DateTime[] | null | undefined;
+  updatedAt?: Date[] | null | undefined;
 }
 
 export interface BookReviewFilter {
   bookId?: string[] | null | undefined;
-  createdAt?: DateTime[] | null | undefined;
+  createdAt?: Date[] | null | undefined;
   id?: string[] | null | undefined;
   rating?: number[] | null | undefined;
-  updatedAt?: DateTime[] | null | undefined;
+  updatedAt?: Date[] | null | undefined;
 }
 
 export interface SaveAuthorInput {

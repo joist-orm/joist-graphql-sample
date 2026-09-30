@@ -13,3 +13,7 @@ node_modules/
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+# Joist installs these bundled skills on each codegen run.
+/.agents/skills/joist-*/
+/.claude/skills/joist-*/

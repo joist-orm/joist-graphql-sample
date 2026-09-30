@@ -15,6 +15,15 @@ There are no examples of business logic or Joist's various features; for those s
 - `yarn joist-codegen` (if you've made migration/schema changes)
 - `yarn test`
 
+## Dependency Compatibility
+
+Dependencies use the latest releases supported by the current tooling:
+
+- `joist-orm` is pinned to `2.4.0`.
+- GraphQL stays on `16.14.2` because Mercurius requires GraphQL 16. The `joist-graphql-resolver-utils/graphql` resolution keeps Joist's resolver types on the same version.
+- `node-pg-migrate` stays on `8.0.4` to satisfy Joist's peer dependency.
+- TypeScript stays on `6.0.3` because `ts-jest` does not support TypeScript 7.
+
 ## Example Workflow
 
 A typical workflow for adding a new entity looks like:
